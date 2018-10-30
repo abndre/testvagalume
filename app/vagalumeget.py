@@ -46,16 +46,34 @@ def openartista(artista):
 
 
 def gettop15(artista):
+	link = openartista(artista)
+	link = '{}popularidade/'.format(link)
+	browser = webdriver.Chrome()
+	browser.get(link)	
+	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
+	xx = browser.find_element_by_tag_name('tbody')
+	xx =xx.text.split('\n')
+	dicio={}
+	for i in xx:
+	    kk = i.split(' ')
+	    key = kk[0]
+	    value = ' '.join(kk[1:-2])
+	    if key =='16':
+	    	print(dicio)
+	    	return dicio
+	    dicio[key]=value
+
+	print(dicio)
+	return dicio
+
+def getmusics(artista,limit):
 
 	link = openartista(artista)
-	
-	
+	limit = str(int(limit)+1)
 
 	if link=='400':
 		#print('erro')
 		return {'erro':'Nenhum resultado :('}
-
-
 	page = requests.get(link)
 	soup = BeautifulSoup(page.text, 'html.parser')
 	x = soup.find_all('span', {'class' : 'numMusic'})
@@ -63,7 +81,7 @@ def gettop15(artista):
 
 	diciomusic ={}
 	for num,music in zip(x,y):
-		if num.text == "16.":
+		if num.text == "{}.".format(limit):
 			return diciomusic
 		diciomusic[num.text]=music.text
 
