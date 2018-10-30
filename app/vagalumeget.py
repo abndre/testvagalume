@@ -3,7 +3,13 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import time
+
 from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 import bs4
 from bs4 import BeautifulSoup
@@ -62,7 +68,7 @@ def gettop15(artista):
 	    	print(dicio)
 	    	return dicio
 	    dicio[key]=value
-
+	browser.close()    
 	print(dicio)
 	return dicio
 
@@ -89,7 +95,30 @@ def getmusics(artista,limit):
 	return diciomusic
 
 
-#gettop15('mamonas')
+def getletra(artista, musica):
+	link = openartista(artista)
+	if link=='400':
+		#print('erro')
+		return {'erro':'Nenhum resultado :('}
+	browser = webdriver.Chrome()
+	browser.get(link)
+	x=WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Jumento Celestino')))
+	x.click()
+	
+	if str(browser.current_url) == str(link):
+		return {'erro':'Nenhum resultado :('}
+
+
+	time.sleep(5)
+	openpopustat =browser.find_element_by_id('lyrics')
+
+	dicio ={'letra':openpopustat.text}
+	#print(dicio)
+	#pdb.set_trace()
+	browser.close()
+	return dicio
+
+#getletra('mamonas','Jumento Celestino')
 #gettop15('ramones')
 #gettop15('easde')
 #gettop15('guns')

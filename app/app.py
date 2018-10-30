@@ -21,12 +21,24 @@ def vagalumemusic():
     return test
 
 
+
+
 @app.route('/vagalumetop/', methods=['GET'])
 def vagalumetop15():
     # e.g: http://localhost:5000/vagalume/?artista='mamomas'
     bar = request.args.to_dict()
     artista = bar['artista']
     test = vagalumeget.gettop15(artista)
+    test = jsonify(test)
+    return test
+
+@app.route('/vagalumeletra/', methods=['GET'])
+def vagalumeletra():
+    # e.g: http://localhost:5000/vagalumeletra/?artista='mamomas'&letra='Jumento Celestino'
+    bar = request.args.to_dict()
+    artista = bar['artista']
+    letra  = bar['letra']
+    test = vagalumeget.getletra(artista,letra)
     test = jsonify(test)
     return test
 
