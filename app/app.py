@@ -9,7 +9,6 @@ app = Flask(__name__)
 def hello_world():
     return 'Flask Dockerized'
 
-
 @app.route('/vagalume/', methods=['GET'])
 def vagalumemusic():
     # e.g: http://localhost:5000/vagalume/?artista='mamonas assassinas'&limit=10
@@ -19,9 +18,6 @@ def vagalumemusic():
     test = vagalumeget.getmusics(artista,limit)
     test = jsonify(test)
     return test
-
-
-
 
 @app.route('/vagalumetop/', methods=['GET'])
 def vagalumetop15():

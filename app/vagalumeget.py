@@ -2,19 +2,18 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
-import time
+
 
 from selenium.webdriver.support.ui import Select
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
-import bs4
-from bs4 import BeautifulSoup
+import time
 import requests
 import pdb
+
+from bs4 import BeautifulSoup
 
 def openartista(artista):
 	link = 'https://www.vagalume.com.br/'
@@ -24,12 +23,8 @@ def openartista(artista):
 	openpopustat.click()
 	time.sleep(3)
 	openpopustat =browser.find_element_by_xpath("//*[@class='searchField']")
-	#openpopustat.clear()
 	openpopustat.send_keys(str(artista))
 	time.sleep(3)
-	#openpopustat.click()
-
-	#pdb.set_trace()
 
 	try:
 		openpopustat =browser.find_element_by_xpath("//*[@class='boxResults blockCenter']")
@@ -78,7 +73,6 @@ def getmusics(artista,limit):
 	limit = str(int(limit)+1)
 
 	if link=='400':
-		#print('erro')
 		return {'erro':'Nenhum resultado :('}
 	page = requests.get(link)
 	soup = BeautifulSoup(page.text, 'html.parser')
@@ -91,14 +85,12 @@ def getmusics(artista,limit):
 			return diciomusic
 		diciomusic[num.text]=music.text
 
-	#print(diciomusic)
 	return diciomusic
 
 
 def getletra(artista, musica):
 	link = openartista(artista)
 	if link=='400':
-		#print('erro')
 		return {'erro':'Nenhum resultado :('}
 	browser = webdriver.Chrome()
 	browser.get(link)
@@ -108,17 +100,10 @@ def getletra(artista, musica):
 	if str(browser.current_url) == str(link):
 		return {'erro':'Nenhum resultado :('}
 
-
 	time.sleep(5)
 	openpopustat =browser.find_element_by_id('lyrics')
 
 	dicio ={'letra':openpopustat.text}
-	#print(dicio)
-	#pdb.set_trace()
 	browser.close()
 	return dicio
 
-#getletra('mamonas','Jumento Celestino')
-#gettop15('ramones')
-#gettop15('easde')
-#gettop15('guns')
