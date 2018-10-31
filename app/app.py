@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
-
+import os 
 import vagalumeget
 
 app = Flask(__name__)
