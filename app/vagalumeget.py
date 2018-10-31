@@ -12,6 +12,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import requests
 import pdb
+import os
+
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+opts = ChromeOptions()
+opts.binary_location = chrome_bin
+self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 
 from bs4 import BeautifulSoup
 
@@ -25,7 +32,7 @@ def openartista(artista):
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	openpopustat.click()
 	time.sleep(3)
-	pdb.set_trace()
+	#pdb.set_trace()
 	openpopustat =browser.find_element_by_xpath("//*[@class='searchField']")
 	openpopustat.send_keys(str(artista))
 	time.sleep(3)
