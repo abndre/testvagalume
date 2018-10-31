@@ -17,14 +17,15 @@ from bs4 import BeautifulSoup
 
 def openartista(artista):
 	link = 'https://www.vagalume.com.br/'
-	try:
-		browser = webdriver.Chrome()
-	except:
-		browser = webdriver.PhantomJS()
+	#try:
+	#	browser = webdriver.Chrome()
+	#except:
+	browser = webdriver.Chrome()
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	openpopustat.click()
 	time.sleep(3)
+	pdb.set_trace()
 	openpopustat =browser.find_element_by_xpath("//*[@class='searchField']")
 	openpopustat.send_keys(str(artista))
 	time.sleep(3)
@@ -52,10 +53,10 @@ def openartista(artista):
 def gettop15(artista):
 	link = openartista(artista)
 	link = '{}popularidade/'.format(link)
-	try:
-		browser = webdriver.Chrome()
-	except:
-		browser = webdriver.PhantomJS()
+	#try:
+	#	browser = webdriver.Chrome()
+	#except:
+	browser = webdriver.Chrome()
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	xx = browser.find_element_by_tag_name('tbody')
@@ -98,10 +99,10 @@ def getletra(artista, musica):
 	link = openartista(artista)
 	if link=='400':
 		return {'erro':'Nenhum resultado :('}
-	try:
-		browser = webdriver.Chrome()
-	except:
-		browser = webdriver.PhantomJS()
+	#try:
+	#	browser = webdriver.Chrome()
+	#except:
+	browser = webdriver.Chrome()
 	browser.get(link)
 	x=WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Jumento Celestino')))
 	x.click()
