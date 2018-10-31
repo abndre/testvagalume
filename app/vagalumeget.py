@@ -17,7 +17,10 @@ from bs4 import BeautifulSoup
 
 def openartista(artista):
 	link = 'https://www.vagalume.com.br/'
-	browser = webdriver.Chrome()
+	try:
+		browser = webdriver.Chrome()
+	except:
+		browser = webdriver.PhantomJS()
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	openpopustat.click()
@@ -49,8 +52,11 @@ def openartista(artista):
 def gettop15(artista):
 	link = openartista(artista)
 	link = '{}popularidade/'.format(link)
-	browser = webdriver.Chrome()
-	browser.get(link)	
+	try:
+		browser = webdriver.Chrome()
+	except:
+		browser = webdriver.PhantomJS()
+	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	xx = browser.find_element_by_tag_name('tbody')
 	xx =xx.text.split('\n')
@@ -63,7 +69,7 @@ def gettop15(artista):
 	    	print(dicio)
 	    	return dicio
 	    dicio[key]=value
-	browser.close()    
+	browser.close()
 	print(dicio)
 	return dicio
 
@@ -92,11 +98,14 @@ def getletra(artista, musica):
 	link = openartista(artista)
 	if link=='400':
 		return {'erro':'Nenhum resultado :('}
-	browser = webdriver.Chrome()
+	try:
+		browser = webdriver.Chrome()
+	except:
+		browser = webdriver.PhantomJS()
 	browser.get(link)
 	x=WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Jumento Celestino')))
 	x.click()
-	
+
 	if str(browser.current_url) == str(link):
 		return {'erro':'Nenhum resultado :('}
 
@@ -106,4 +115,3 @@ def getletra(artista, musica):
 	dicio ={'letra':openpopustat.text}
 	browser.close()
 	return dicio
-
