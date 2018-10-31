@@ -14,6 +14,15 @@ import requests
 import pdb
 import os
 
+CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+
+chrome_bin = os.environ.get('GOOGLE_CHROME_BIN', "chromedriver")
+options = webdriver.ChromeOptions()
+options.binary_location = chrome_bin
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument('headless')
+options.add_argument('window-size=1200x600')
 
 from bs4 import BeautifulSoup
 
@@ -22,7 +31,8 @@ def openartista(artista):
 	#try:
 	#	browser = webdriver.Chrome()
 	#except:
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+	#browser = webdriver.Chrome()
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	openpopustat.click()
