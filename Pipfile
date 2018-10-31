@@ -10,6 +10,7 @@ Flask = "*"
 selenium = "*"
 requests = "*"
 beautifulsoup4 = "*"
+chromedriver_installer ="*"
 
 [requires]
 
