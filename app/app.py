@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
-import os 
+import os
 import vagalumeget
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def vagalumemusic():
 
 @app.route('/vagalumetop/', methods=['GET'])
 def vagalumetop15():
-    # e.g: http://localhost:5000/vagalume/?artista='mamomas'
+    # e.g: http://localhost:5000/vagalumetop/?artista='mamomas'
     bar = request.args.to_dict()
     artista = bar['artista']
     test = vagalumeget.gettop15(artista)
