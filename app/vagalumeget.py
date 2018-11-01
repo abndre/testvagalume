@@ -81,11 +81,11 @@ def gettop15(artista):
 	    key = kk[0]
 	    value = ' '.join(kk[1:-2])
 	    if key =='16':
-	    	print(dicio)
+	    	#print(dicio)
 	    	return dicio
 	    dicio[key]=value
 	browser.close()
-	print(dicio)
+	#print(dicio)
 	return dicio
 
 def getmusics(artista,limit):
