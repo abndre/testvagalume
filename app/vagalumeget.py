@@ -14,24 +14,14 @@ import requests
 import pdb
 import os
 
-from selenium.webdriver.chrome.options import Options
-
-'''
-CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
-GOOGLE_CHROME_BIN = " /app/.apt/usr/bin/google-chrome"
-
-chrome_options = Options()
-chrome_options.binary_location = GOOGLE_CHROME_BIN
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-'''
 
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-opts = ChromeOptions()
-opts.binary_location = chrome_bin
-xselenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+
+
+options = ChromeOptions()
+options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+driver = webdriver.Chrome(chrome_options=options)
+
 
 from bs4 import BeautifulSoup
 
@@ -40,7 +30,7 @@ def openartista(artista):
 	#try:
 	#	browser = webdriver.Chrome()
 	#except:
-	browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+	browser = webdriver.Chrome(chrome_options=options)
 	#browser = webdriver.Chrome()
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
@@ -77,7 +67,7 @@ def gettop15(artista):
 	#try:
 	#	browser = webdriver.Chrome()
 	#except:
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(chrome_options=options)
 	browser.get(link)
 	openpopustat =browser.find_element_by_xpath("//*[@class='icon-busca']")
 	xx = browser.find_element_by_tag_name('tbody')
@@ -123,7 +113,7 @@ def getletra(artista, musica):
 	#try:
 	#	browser = webdriver.Chrome()
 	#except:
-	browser = webdriver.Chrome()
+	browser = webdriver.Chrome(chrome_options=options)
 	browser.get(link)
 	x=WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Jumento Celestino')))
 	x.click()
