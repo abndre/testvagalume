@@ -16,7 +16,7 @@ import os
 
 from selenium.webdriver.chrome.options import Options
 
-
+'''
 CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
 GOOGLE_CHROME_BIN = " /app/.apt/usr/bin/google-chrome"
 
@@ -25,6 +25,13 @@ chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+'''
+
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+opts = ChromeOptions()
+opts.binary_location = chrome_bin
+xselenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 
 from bs4 import BeautifulSoup
 
