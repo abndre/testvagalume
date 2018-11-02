@@ -7,10 +7,12 @@ verify_ssl = true
 [packages]
 
 Flask = "*"
+flask-sqlalchemy = "*"
 selenium = "*"
 requests = "*"
 beautifulsoup4 = "*"
 chromedriver_installer ="*"
+psycopg2 = "*"
 
 [requires]
 
