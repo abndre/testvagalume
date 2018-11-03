@@ -66,7 +66,7 @@ def openartista(artista):
 
 		#aqui se obtem a url do artista selecionado
 		url = browser.current_url
-		browser.close()
+		#browser.close()
 		# retorna a url para outros testes
 		return url
 
@@ -78,11 +78,12 @@ def gettop15(artista):
 	link = openartista(artista)
 
 	if link=='400':
+		browser.close()
 		return {'erro':'Nenhum resultado :('}
 
 	#abre a url da popularidade
 	link = '{}popularidade/'.format(link)
-	browser = webdriver.Chrome(chrome_options=options)
+	#browser = webdriver.Chrome(chrome_options=options)
 	browser.get(link)
 	time.sleep(5)
 
@@ -108,7 +109,7 @@ def getmusics(artista,limit):
 
 	link = openartista(artista)
 	limit = str(int(limit)+1)
-
+	browser.close()
 	if link=='400':
 		return {'erro':'Nenhum resultado :('}
 
@@ -133,6 +134,7 @@ def getletra(artista, musica):
 	link = openartista(artista)
 
 	if link=='400':
+		browser.close()
 		return {'erro':'Nenhum resultado :('}
 
 	browser = webdriver.Chrome(chrome_options=options)
