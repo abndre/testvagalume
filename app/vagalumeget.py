@@ -13,8 +13,8 @@ import requests
 
 import os
 
-#options = ChromeOptions()
-#options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+options = ChromeOptions()
+options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
 
 
 from bs4 import BeautifulSoup
