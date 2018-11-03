@@ -5,9 +5,19 @@ tempo nele.
 
 O primeiro desafio foi entender como funciona o site do vagalume e posteriomente
 obter os dados. Para tal utilizei o jupyter notebook para testar tal procedimento,
-houve a necessidade de se usar o selenium em sua maioria.
+houve a necessidade de se usar o selenium em sua maioria. os testes com jupyter
+estão na pasta jupytertest.
+
+
+# Desenvolvimento da API
 
 Minha proposta de API é utilizar métodos GET com os parametros na URL para fazer as requisições.
+Eu preferi usar este modelo de url: vagalume/?artista=ramones&&limit=10
+ao invés destes:                    vagalume/ramones/10
+
+No dia a dia entendo que o parametro pela url é rápido para alterações.
+Ou usaria uma requisição via json que também acho mais fácil alterações posteriores.
+
 
 ### Exemplo de se utilização da API
 
@@ -111,3 +121,13 @@ https://andreteste1234.herokuapp.com/vagalume/?artista=ramones&&limit=10
 https://andreteste1234.herokuapp.com/vagalumeletra/?artista=mamonas&letra=Jumento Celestino
 https://andreteste1234.herokuapp.com/vagalumetop/?artista=ramones
 ```
+# Faltou
+
+Não apliquei um banco de dados para acesso das informações devido a falta de tempo
+para usar o postgre do heroku.
+
+Deixei um Dockerfile para criação do container e aplicação da API, mas não utilizei neste
+projeto.
+
+Em suma o desafio é bem extenso, teria de me orgazniar mais para deixa-lo redondo, mas agradeço
+poder participar.
