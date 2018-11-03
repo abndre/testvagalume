@@ -13,8 +13,8 @@ import requests
 
 import os
 
-options = ChromeOptions()
-options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+#options = ChromeOptions()
+#options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
 
 
 from bs4 import BeautifulSoup
@@ -50,7 +50,7 @@ def openartista(artista):
 		pass
 	if openpopustat.text == 'Nenhum resultado :(':
 		browser.close()
-		return '400'
+		return '400', browser
 	else:
 		#ao se digitar na caixa de texto, sempre se e escolhido o primeiro artista
 		try:
@@ -68,17 +68,17 @@ def openartista(artista):
 		url = browser.current_url
 		#browser.close()
 		# retorna a url para outros testes
-		return url
+		return url, browser
 
 	# se chegar aqui deu algum erro
 	return '400'
 
 def gettop15(artista):
 	#obtem a url do artista
-	link = openartista(artista)
+	link, browser = openartista(artista)
 
 	if link=='400':
-		browser.close()
+		browser.quit()
 		return {'erro':'Nenhum resultado :('}
 
 	#abre a url da popularidade
@@ -99,17 +99,18 @@ def gettop15(artista):
 		value = ' '.join(kk[1:-2])
 		# este if limita o numero para 15 musicas
 		if key =='16':
+			browser.quit()
 			return dicio
 		dicio[key]=value
-	browser.close()
+	browser.quit()
 	return dicio
 
 
 def getmusics(artista,limit):
 
-	link = openartista(artista)
+	link, browser = openartista(artista)
 	limit = str(int(limit)+1)
-	browser.close()
+	browser.quit()
 	if link=='400':
 		return {'erro':'Nenhum resultado :('}
 
@@ -131,13 +132,12 @@ def getmusics(artista,limit):
 
 
 def getletra(artista, musica):
-	link = openartista(artista)
+	link, browser = openartista(artista)
 
 	if link=='400':
 		browser.close()
 		return {'erro':'Nenhum resultado :('}
 
-	browser = webdriver.Chrome(chrome_options=options)
 	browser.get(link)
 
 	#abre o lind onde se encontra a musica
@@ -153,5 +153,5 @@ def getletra(artista, musica):
 	#encontra a tag da musica e retorna
 	openpopustat =browser.find_element_by_id('lyrics')
 	dicio ={'letra':openpopustat.text}
-	browser.close()
+	browser.quit()
 	return dicio
