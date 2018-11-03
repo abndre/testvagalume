@@ -93,13 +93,13 @@ def gettop15(artista):
 	xx =xx.text.split('\n')
 	dicio={}
 	for i in xx:
-	    kk = i.split(' ')
-	    key = kk[0]
-	    value = ' '.join(kk[1:-2])
+		kk = i.split(' ')
+		key = kk[0]
+		value = ' '.join(kk[1:-2])
 		# este if limita o numero para 15 musicas
 		if key =='16':
-	    	return dicio
-	    dicio[key]=value
+			return dicio
+		dicio[key]=value
 	browser.close()
 	return dicio
 
