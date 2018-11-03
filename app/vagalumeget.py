@@ -29,6 +29,7 @@ todas as outras funcoes a chamam
 def openartista(artista):
 	link = 'https://www.vagalume.com.br/'
 	browser = webdriver.Chrome(chrome_options=options)
+	time.sleep(5)
 	browser.get(link)
 
 	#clica no icone de busca
