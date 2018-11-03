@@ -1,10 +1,22 @@
-# testvagalume
+# Desafio Foundation
 
+Um dos maiores problemas foi conseguir usar o heroku corretamente, perdi demasiado
+tempo nele.
+
+O primeiro desafio foi entender como funciona o site do vagalume e posteriomente
+obter os dados. Para tal utilizei o jupyter notebook para testar tal procedimento,
+houve a necessidade de se usar o selenium em sua maioria.
+
+Minha proposta de API é utilizar métodos GET com os parametros na URL para fazer as requisições.
+
+### Exemplo de se utilização da API
+
+```
 get music artist
 
 http://localhost:5000/vagalume/?artista=ramones&&limit=10
 
-return 
+return
 
 {
     "01.": "Pet Sematary",
@@ -82,3 +94,20 @@ http://localhost:5000/vagalumeletra/?artista='mamomas'&letra='Jumento Celestino'
 {
     "letra": "Tava ruim lá na Bahia, profissão de bóia-fria\n\nTrabalhando noite e dia, num era isso que eu queria\nEu vim-me embora pra \"Sum Paulo\",\nEu vim no lombo dum jumento com pouco conhecimento\nEnfrentando chuva e vento e dando uns peido fedorento\nAté minha bunda fez um calo\n\nChegando na capital, uns puta predião legal\nAs mina pagando um pau, mas meu jumento tava mal\n\nPrecisando reformar\nFiz a pintura, importei quatro ferradura\nTroquei até dentadura e pra completar a belezura\nEu instalei um Road-Star!\n\nDescendo com o jumento na mó vula\nUltrapassei farol vermelho e dei de frente com uma mula\nSaí avuando, parecia um foguete\nSó não estourei meu côco pois tava de capacete\n\nMe alevantei, o dono da mula gritando\nO povo em volta tudo olhando e ninguém pra me socorrer\n\nFugi mancando e a multidão se amontoando\nEm coro tudo gritando: \"Baiano, cê vai morreêeê !\"\n\nDepois desse sofrimento, a maior desilusão\nPra aumentar o meu lamento, foi-se embora meu jumento\nE me deixou com as prestação\nE hoje eu tô arrependido de ter feito imigração\nVolto pra casa fudido, com um monte de apelido\nO mais bonito é cabeção!"
 }
+```
+# Segunda etapa
+## Aplicando e utilizando o heroku
+
+utilizar o ChromeDriver foi um pouco complicado e ainda ocorrem alguns erros.
+Em suma o heroku possui alguns buildpacks que sendo adicionados corretamente evitam
+estes tipo de erros.
+
+Alguns casos ocorre timeout ou o chromedriver trava e é necessário restartar a aplicação.
+Mas em suma esta seria as urls de teste
+
+```
+# urls para teste usando heroku
+https://andreteste1234.herokuapp.com/vagalume/?artista=ramones&&limit=10
+https://andreteste1234.herokuapp.com/vagalumeletra/?artista='mamomas'&letra='Jumento Celestino
+https://andreteste1234.herokuapp.com/vagalumetop/?artista=ramones
+```
