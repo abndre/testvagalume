@@ -108,6 +108,6 @@ Mas em suma esta seria as urls de teste
 ```
 # urls para teste usando heroku
 https://andreteste1234.herokuapp.com/vagalume/?artista=ramones&&limit=10
-https://andreteste1234.herokuapp.com/vagalumeletra/?artista='mamonas'&letra='Jumento Celestino
+https://andreteste1234.herokuapp.com/vagalumeletra/?artista=mamonas&letra=Jumento Celestino
 https://andreteste1234.herokuapp.com/vagalumetop/?artista=ramones
 ```
