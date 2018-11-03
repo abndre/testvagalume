@@ -6,8 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 #este seria o link do banco criado pelo heroku
 postgreelink = 'postgres://cpjtqudnnygdji:c65440f4b0d30763bb3ef68f66eddf9a2765d29f79cadfdb362f19c683678a01@ec2-75-101-138-26.compute-1.amazonaws.com:5432/d8ggrgf7chi7ca'
-app.config['SQLALCHEMY_DATABASE_URI'] = postgreelink
-db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = postgreelink
+#db = SQLAlchemy(app)
 
 app = Flask(__name__)
 
